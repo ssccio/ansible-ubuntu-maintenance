@@ -36,4 +36,4 @@
     - name: Set EDITOR to vim in /etc/profile
       lineinfile:
         path: /etc/profile
-        line: EDITOR=vim
+        line: export EDITOR=vim
