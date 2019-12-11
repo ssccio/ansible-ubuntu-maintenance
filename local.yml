@@ -2,6 +2,16 @@
 - hosts: all
   become: yes
   tasks:
+    - name: Find pid for apt-get if running
+      shell: pgrep apt-get
+      register: apt_pid
+      ignore_errors: yes
+
+    - name: Wait until the process is finished and pid was destroyed
+      wait_for:
+        path: /proc/{{ apt_pid.stdout }}/status
+        state: absent
+
     - name: Install aptitude if missing
       apt:
         update_cache: yes
