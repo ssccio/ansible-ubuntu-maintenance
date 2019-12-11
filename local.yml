@@ -2,6 +2,12 @@
 - hosts: all
   become: yes
   tasks:
+    - name: Install aptitude if missing
+      apt:
+        update_cache: yes
+        name: "aptitude"
+        state: latest
+
     - name: Update cache
       apt:
         update_cache: yes
