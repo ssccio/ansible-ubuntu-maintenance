@@ -32,3 +32,8 @@
         minute: 0
         hour: "2"
         job: "ansible-pull -U https://github.com/ssccio/ansible-ubuntu-maintenance -i hosts"
+
+    - name: Set EDITOR to vim in /etc/profile
+      lineinfile:
+        path: /etc/profile
+        line: EDITOR=vim
