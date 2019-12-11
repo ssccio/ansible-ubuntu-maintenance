@@ -31,4 +31,4 @@
         name: "Run maintenance"
         minute: 0
         hour: "2"
-        job: "ansible-pull -U https://github.com/ssccio/ansible-ubuntu-maintenance.git -i hosts"
+        job: "ansible-pull -U https://github.com/ssccio/ansible-ubuntu-maintenance -i hosts"
