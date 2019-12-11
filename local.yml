@@ -25,11 +25,4 @@
         name: "Run maintenance"
         minute: 0
         hour: "2"
-        job: "ansible-pull -U https://github.com/ssccio/ansible-ubuntu-maintenance.git"
-
-
-  handlers:
-    - name: restart_postfix
-      service: 
-        name: postfix
-        state: restarted
+        job: "ansible-pull -U https://github.com/ssccio/ansible-ubuntu-maintenance.git -i hosts"
