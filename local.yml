@@ -1,0 +1,35 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Update apt packaages
+      apt:
+        name: "*"
+        state: latest
+
+    - name: Autoremove apt packages
+      apt:
+        autoremove: yes
+
+    - name: Autoclean apt packages
+      apt:
+        autoclean: yes
+
+    - name: Automate this in cron
+      cron:
+        name: "Run maintenance"
+        minute: 0
+        hour: "2"
+        job: "ansible-pull -U https://github.com/ssccio/ansible-ubuntu-maintenance.git"
+
+
+  handlers:
+    - name: restart_postfix
+      service: 
+        name: postfix
+        state: restarted
